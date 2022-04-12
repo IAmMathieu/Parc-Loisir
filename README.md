@@ -103,9 +103,3 @@ Une appli "classique" avec un front HTML et sans AJAX (navigation par liens uniq
 | POST    | /incident/new  | page | cible du formulaire de création d'incident, crée l'incident puis redirige sur la page de cet incident       | redirection HTTP |
 
 **Note importante** : [PUG](https://pugjs.org/api/getting-started.html) est un moteur de rendu HTML qui permet d'accélérer énormément l'écriture de HTML mais il est assez tâtillon, n'hésitez pas à vous entraîner dans un projet à part. Ah et comme les templates sont _compilés_ au démarrage de l'application qui les utilise, si vous modifiez un template, il faut penser à redémarrer le serveur pour voir la modif. Et comme ni _node-dev_ ni _nodemon_ ne surveille les fichiers de templates car ce ne sont pas des fichiers JS, le redémarrage ne se fera pas automatiquement en sauvegardant le fichier. Par contre, chaque fois que vous faîtes `ctrl+S` dans un fichier JS, même si vous n'avez rien modifié, ces deux outils détectent la sauvegarde et relancent votre serveur :sunglasses:
-
-PG_HOST=ec2-52-18-116-67.eu-west-1.compute.amazonaws.com
-PG_USER=jicnexukjdbrgg
-PG_DATABASE=da0hmlvnlfaj4g
-PG_PASSWORD=e0d4c769327e2ba09207b7e0d2b954fe565d5106e807b600d8d5e7724ab36e9c
-PORT=80
