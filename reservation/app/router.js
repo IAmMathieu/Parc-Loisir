@@ -6,13 +6,14 @@ const attractionController = require("./controller/attractionController");
 const router = express.Router();
 
 router
-  .use("/")
+  .route("/")
   .get(routerWrapper(visiteurController.displayRegister))
   .post(routerWrapper(visiteurController.registerTicket));
 
-router.use("/init").get(routerWrapper(visiteurController.getVisitor));
-router.use("/events").get(routerWrapper(attractionController.getEvents));
-router.use("/bookings").get(routerWrapper(attractionController.getReservation));
-router.use("/book").put(routerWrapper(attractionController.addReservation));
+router.route("/init/:id").get(routerWrapper(visiteurController.getVisitor));
+router.route("/events").get(routerWrapper(attractionController.getEvents));
+router.route("/bookings").get(routerWrapper(attractionController.getReservation));
+router.route("/book").put(routerWrapper(attractionController.addReservation));
+router.route("/test").get(routerWrapper(attractionController.addAttraction));
 
 module.exports = router;

@@ -1,0 +1,41 @@
+<%- include('partials/header') %>
+<main>
+
+
+  <table class="incident_table table">
+    <thead>
+      <tr>
+        <th colspan="8">
+          List of Incidents
+        </th>
+      </tr>
+      <tr>
+        <th>id</th>
+        <th>Attraction</th>
+        <th>Nature</th>
+        <th>Report Time</th>
+        <th>technicien</th>
+        <th>Horaire Ouverture</th>
+        <th>Horaire Fermeture</th>
+        <th>Horaire Résolution</th>
+        <% if(result.resolution_date == null) { %><th>Marquer comme résolu</th><% } %>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <th><%= result.id%></th>
+          <th><%= result.attraction_name%></th>
+          <th><%= result.nature%></th>
+          <th><%= result.report_time.toString().split("GMT")[0]%></th>
+          <th><%= result.operator%></th>
+          <th><%= result.attraction_os%></th>
+          <th><%= result.attraction_cs%></th>
+          <th><%= result.resolution_date %></th>
+          <% if(result.resolution_date == null) { %><th>
+            <form method="POST" action="/incident/resolved"><input name="id" value="<%= result.id %>" hidden><input type="submit" value="Résolu" class="button is-primary is-rounded"></form>
+          </th> <% } %>
+        </tr>
+    </tbody>
+  </table>
+</main>
+<%- include('partials/footer') %>

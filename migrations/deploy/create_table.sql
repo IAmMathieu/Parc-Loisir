@@ -8,17 +8,18 @@ CREATE TABLE attraction(
   "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "name" TEXT NOT NULL UNIQUE,
   "capacity" INTEGER NOT NULL,
-  "open_schedule" TIME NOT NULL,
-  "closed_schedule" TIME NOT NULL,
-  "duration" TIME NOT NULL,
-  "isMechanic" BOOLEAN NOT NULL
+  "open_schedule" TIME(0) NOT NULL,
+  "closed_schedule" TIME(0) NOT NULL,
+  "duration" TIME(0) NOT NULL,
+  "ismechanic" BOOLEAN NOT NULL,
+  "isopen" BOOLEAN NOT NULL
 );
 
 CREATE TABLE visiteur(
   "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "billet_num" uuid NOT NULL DEFAULT uuid_generate_v4() UNIQUE,
-  "validation_start" TIME NOT NULL,
-  "validation_end" TIME NOT NULL
+  "validation_start" TIME(0) NOT NULL,
+  "validation_end" TIME(0) NOT NULL
 );
 
 CREATE TABLE reservation(
@@ -31,17 +32,11 @@ CREATE TABLE reservation(
 
 CREATE TABLE incident(
   "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  "incident_id" TEXT NOT NULL UNIQUE,
+  "report_time" timestamptz,
+  "attraction_id" INTEGER REFERENCES attraction(id),
   "nature" TEXT NOT NULL,
   "operator" TEXT NOT NULL,
-  "resolution_date" TIME DEFAULT NULL 
-);
-
-CREATE TABLE maintenance(
-  "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  "attraction_id" INTEGER REFERENCES attraction("id"),
-  "incident_id" TEXT REFERENCES incident("incident_id"),
-  "report_time" TIMESTAMPTZ DEFAULT NOW()
+  "resolution_date" TIME (0) DEFAULT NULL 
 );
 
 COMMIT;

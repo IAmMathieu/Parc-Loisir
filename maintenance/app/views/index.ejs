@@ -1,0 +1,35 @@
+<%- include('partials/header') %>
+<main>
+
+
+  <table class="incident_table table">
+    <thead>
+      <tr>
+        <th colspan="6">
+          List of Incidents
+        </th>
+      </tr>
+      <tr>
+        <th>id</th>
+        <th>Attraction</th>
+        <th>Nature</th>
+        <th>Report Time</th>
+        <th>Incident Résolu</th>
+        <th>Gestion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (const result of results) { %>
+        <tr>
+          <th><%= result.id%></th>
+          <th><a href="/incident/<%= result.id%>"><%= result.attraction_name%></a></th>
+          <th><%= result.nature%></th>
+          <th><%= result.report_time.toString().split("GMT")[0]%></th>
+          <th><span class="tag is-<% if(result.resolution_date != null) { %>success<% } else { %>danger<% } %>"><% if(result.resolution_date != null) {%><%= result.resolution_date%><% } else { %>Not Resolved<% } %></span></th>
+          <th><form method="DELETE" action="/incident/delete/"><input name="id" value="<%= result.id %>" hidden><input type="submit" value="Delete" class="button is-danger is-rounded"></form></th>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</main>
+<%- include('partials/footer') %>

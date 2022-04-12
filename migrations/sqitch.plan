@@ -2,3 +2,4 @@
 %project=OParc
 
 create_table 2022-04-11T12:16:27Z Mathieu <mathieu@example.com> # Creation de la bdd OParc
+maintenance_view 2022-04-12T07:04:00Z Mathieu <mathieu@example.com> # Creation de la vue maintenance

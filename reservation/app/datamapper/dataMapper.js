@@ -14,7 +14,7 @@ const dataMapper = {
   },
   getRerservation: async (id) => {
     const result = await client.query({
-      text: "SELECT reservation.attraction,* FROM visitor JOIN reservation ON reservation.billet = visitor.billet_num WHERE id=$1",
+      text: "SELECT reservation.* FROM visiteur JOIN reservation ON reservation.billet = visiteur.billet_num WHERE visiteur.id=$1",
       values: [id],
     });
     return result.rows[0];
@@ -38,10 +38,11 @@ const dataMapper = {
     open_schedule,
     closed_schedule,
     duration,
-    mechanic
+    mechanic,
+    open
   ) => {
     const result = await client.query({
-      text: "INSERT INTO attraction (name,capacity,open_schedule,closed_schedule,duration,isMechanic) VALUES($1,$2,$3,$4,$5,$6) RETURNING *",
+      text: "INSERT INTO attraction (name,capacity,open_schedule,closed_schedule,duration,isMechanic,isOpen) VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING *",
       values: [
         name,
         capacity,
@@ -49,6 +50,7 @@ const dataMapper = {
         closed_schedule,
         duration,
         mechanic,
+        open
       ],
     });
     return result.rows[0];

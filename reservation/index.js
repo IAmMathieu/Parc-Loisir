@@ -13,6 +13,6 @@ server.listen(process.env.PORT || 1337, () => {
   console.log(
     `Reservation server started on PORT : ${
       process.env.PORT || 1337
-    } - [${Date.now().toLocaleString("hh:mm:ss")}]`
+    } - [${new Date().toISOString()}]`
   );
 });

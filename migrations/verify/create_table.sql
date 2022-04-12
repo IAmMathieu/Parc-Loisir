@@ -2,14 +2,12 @@
 
 BEGIN;
 
-SELECT id, "name", capacity, open_schedule, closed_schedule, duration, isMechanic FROM attraction WHERE FALSE;
+SELECT attraction.id, attraction.name, attraction.capacity, attraction.open_schedule, attraction.closed_schedule, attraction.duration, attraction.ismechanic, attraction.isopen FROM attraction WHERE FALSE;
 
-SELECT id, billet_num, validation_start, validation_end, reservation FROM visiteur WHERE FALSE;
+SELECT visiteur.id, visiteur.billet_num, visiteur.validation_start, visiteur.validation_end FROM visiteur WHERE FALSE;
 
-SELECT id, billet, attraction, participants, slot FROM reservation WHERE FALSE;
+SELECT reservation.id, reservation.billet, reservation.attraction_id, reservation.participants, reservation.slot FROM reservation WHERE FALSE;
 
-SELECT id, incident_id, nature, operator, resolution_date FROM incident WHERE FALSE;
-
-SELECT id, attraction, incident, report_time FROM maintenance WHERE FALSE;
+SELECT incident.id, incident.nature, incident.operator, incident.resolution_date FROM incident WHERE FALSE;
 
 ROLLBACK;

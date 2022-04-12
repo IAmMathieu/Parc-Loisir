@@ -1,0 +1,18 @@
+<%- include('partials/header') %>
+
+<form action="/incident/new" method="post" class="button-container">
+
+  <div class="select is-info">
+    <select name="attraction_id">
+      <% for(const attraction of attractions) { %>
+        <option value="<%= attraction.id %>"><%= attraction.name %></option>
+        <% } %>
+    </select>
+    </div>
+  <input class="input is-info" type="text" placeholder="Description" name="nature">
+  <input class="input is-info" type="text" placeholder="Nom du technicien" name="operator">
+  <button class="button is-info is-active" type="submit">Create new Incident</button>
+</form>
+
+
+<%- include('partials/footer') %>

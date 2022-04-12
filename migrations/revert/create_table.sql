@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP TABLE attraction,visiteur,reservation,incident,maintenance CASCADE;
+DROP TABLE attraction,visiteur,reservation,incident CASCADE;
 
 COMMIT;

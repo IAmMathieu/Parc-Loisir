@@ -5,7 +5,7 @@ const client = new Pool({
   user: process.env.PGUSER,
   password: process.env.PGPASSWORD,
   port: process.env.PGPORT,
-  database: oparc,
+  database: process.env.PGDATABASE,
   ssl: {
     rejectUnauthorized: false,
   },

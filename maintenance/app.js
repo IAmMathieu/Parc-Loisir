@@ -1,18 +1,23 @@
 require("dotenv").config({ path: "./app/config/.env" });
 const express = require("express");
-const router = require("./app/router");
+const router = require("./app/router/router");
+const path = require('path');
 
-const server = express();
+const app = express();
 
-server.use(express.urlencoded({ extended: false }));
-server.use(express.json());
-server.use(express.static("public"));
-server.use(router);
+app.set("view engine", "ejs");
+const pathToViews = path.resolve(__dirname, "./app/views");
+app.set("views", pathToViews);
 
-server.listen(process.env.PORT || 3333, () => {
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.static("public"));
+app.use(router);
+
+app.listen(process.env.PORT || 3333, () => {
   console.log(
-    `Reservation server started on PORT : ${
-      process.env.PORT || 3333
-    } - [${Date.now().toLocaleString("hh:mm:ss")}]`
+    `Maintenance server started on PORT : ${
+      process.env.PORT
+    } - [${new Date().toISOString()}]`
   );
 });
